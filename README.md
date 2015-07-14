@@ -1,9 +1,7 @@
-# QuandlFinancialData
-
 # Instructions to install QuandlLink package in Mathematica. 
 ============================================================
-1. download the QundlLink zipped folder.
-2. Follow the instruction in following wolfram support article to install QuandlLink package using the zipped folder:
+1. Download QuandlLink zipped folder.
+2. Follow the instruction in following wolfram support article to install QuandlLink package using QuandlLink zipped folder:
     
      http://support.wolfram.com/kb/5648
 
