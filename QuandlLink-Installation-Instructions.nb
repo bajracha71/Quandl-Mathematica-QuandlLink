@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    125662,       3044]
-NotebookOptionsPosition[    123994,       2982]
-NotebookOutlinePosition[    124493,       3003]
-CellTagsIndexPosition[    124406,       2998]
+NotebookDataLength[    125460,       3037]
+NotebookOptionsPosition[    123795,       2975]
+NotebookOutlinePosition[    124294,       2996]
+CellTagsIndexPosition[    124207,       2991]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,19 +24,12 @@ Cell["Instructions to install QuandlLink package in Mathematica. ", "Section",
  CellChangeTimes->{{3.645830557466544*^9, 3.6458306212389297`*^9}}],
 
 Cell["\<\
-1. download the QuandlLink zipped folder.
-2. Follow the instruction in following wolfram support article to install \
-QuandlLink package using the zipped folder:
-    
-     http://support.wolfram.com/kb/5648
-
-3. Or simply unzipped the folder and put the contents (i.e QuandlLink folder) \
- in Applications folder of either $UserBaseDirectory or $BaseDirectory of \
-Mathematica. These location can be opened by evaluating following in \
-Mathematica notebook:\
+- Download QuandlLink folder and put it in Applications folder of either \
+$UserBaseDirectory or $BaseDirectory of Mathematica. These location can be \
+opened by evaluating following in Mathematica notebook:\
 \>", "Text",
  CellChangeTimes->{{3.645830557466544*^9, 3.6458306030278254`*^9}, 
-   3.6458306373706503`*^9}],
+   3.6458306373706503`*^9, {3.6459211322245874`*^9, 3.6459211433229637`*^9}}],
 
 Cell[BoxData[
  RowBox[{"\n", 
@@ -2991,58 +2984,58 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "Info3644216958-4863455"->{
-  Cell[2219, 69, 451, 12, 42, "Print",
+  Cell[2020, 62, 451, 12, 42, "Print",
    CellTags->"Info3644216958-4863455"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Info3644216958-4863455", 124303, 2992}
+ {"Info3644216958-4863455", 124104, 2985}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 146, 1, 97, "Section"],
-Cell[729, 25, 576, 13, 182, "Text"],
-Cell[1308, 40, 542, 14, 72, "Input"],
-Cell[1853, 56, 84, 1, 30, "Text"],
-Cell[1940, 59, 123, 2, 31, "Input"],
+Cell[729, 25, 377, 6, 68, "Text"],
+Cell[1109, 33, 542, 14, 72, "Input"],
+Cell[1654, 49, 84, 1, 30, "Text"],
+Cell[1741, 52, 123, 2, 31, "Input"],
 Cell[CellGroupData[{
-Cell[2088, 65, 128, 2, 31, "Input"],
-Cell[2219, 69, 451, 12, 42, "Print",
+Cell[1889, 58, 128, 2, 31, "Input"],
+Cell[2020, 62, 451, 12, 42, "Print",
  CellTags->"Info3644216958-4863455"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2707, 86, 508, 13, 57, "Subsubsection"],
-Cell[3218, 101, 220, 4, 31, "Input"],
+Cell[2508, 79, 508, 13, 57, "Subsubsection"],
+Cell[3019, 94, 220, 4, 31, "Input"],
 Cell[CellGroupData[{
-Cell[3463, 109, 499, 8, 52, "Input"],
-Cell[3965, 119, 6376, 180, 495, "Output"]
+Cell[3264, 102, 499, 8, 52, "Input"],
+Cell[3766, 112, 6376, 180, 495, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10378, 304, 367, 7, 52, "Input"],
-Cell[10748, 313, 5845, 177, 495, "Output"]
+Cell[10179, 297, 367, 7, 52, "Input"],
+Cell[10549, 306, 5845, 177, 495, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16630, 495, 247, 4, 31, "Input"],
-Cell[16880, 501, 74221, 1470, 127, "Output"]
+Cell[16431, 488, 247, 4, 31, "Input"],
+Cell[16681, 494, 74221, 1470, 127, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[91138, 1976, 513, 9, 52, "Input"],
-Cell[91654, 1987, 8083, 253, 432, "Output"]
+Cell[90939, 1969, 513, 9, 52, "Input"],
+Cell[91455, 1980, 8083, 253, 432, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[99774, 2245, 219, 4, 31, "Input"],
-Cell[99996, 2251, 4347, 103, 236, "Output"]
+Cell[99575, 2238, 219, 4, 31, "Input"],
+Cell[99797, 2244, 4347, 103, 236, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[104392, 2360, 479, 12, 57, "Subsubsection"],
-Cell[104874, 2374, 377, 8, 52, "Input"],
+Cell[104193, 2353, 479, 12, 57, "Subsubsection"],
+Cell[104675, 2367, 377, 8, 52, "Input"],
 Cell[CellGroupData[{
-Cell[105276, 2386, 107, 1, 31, "Input"],
-Cell[105386, 2389, 18568, 588, 1312, "Output"]
+Cell[105077, 2379, 107, 1, 31, "Input"],
+Cell[105187, 2382, 18568, 588, 1312, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
