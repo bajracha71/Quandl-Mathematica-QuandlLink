@@ -93,18 +93,21 @@ QuandlFinancialData[name_String, opts : OptionsPattern[]] :=
  			 stringsplit 
  		]
  		
- 	] /;(IntegerQ[OptionValue[column]]||OptionValue[column] ==="")
+ 	] /;(OptionValue[column] ==="")
  	
 
-parseData[myString_String, pos_]/;((Head[pos] === List && Length[pos] >= 2)||Head[pos]===Span) :=
+parseData[csvString_String, pos_]/;((ListQ[pos] && Length[pos] >= 2)|| IntegerQ[pos] ||Head[pos]===Span) :=
 	Block[
 		{
-			stringSplit = Fold[StringSplit, myString, {"\n", ","}],
+			stringSplit = Map[StringSplit[#, ","]&, StringSplit[csvString, "\n"]],
+			fun,
 			newStringSplit 
 		},
-		newStringSplit = stringSplit[[All, pos]];
+		fun /; IntegerQ[pos] = Function[x, ToExpression[x[[pos]]]];
+		fun /; (ListQ[pos] || Head[pos] === Span) = Function[x, ToExpression @ Rest @ x];
+		newStringSplit = stringSplit[[All, If[IntegerQ[pos], {1, pos}, pos]]];
 		Map[
-			{ToExpression@StringSplit[First@#, "-"], ToExpression@Rest@#} &,
+			{First@#, fun[#]} &,
 			newStringSplit 
    		]
  	 ]
@@ -118,7 +121,7 @@ parseData[myString_String, pos_]/;((Head[pos] === List && Length[pos] >= 2)||Hea
  		urlFetch = URLFetch[url, "Method"->"GET"];
  		parseData[urlFetch, OptionValue[column]]
  		
- 	] /;((Head[OptionValue[column]] === List && Length[OptionValue@column]>= 2)|| Head[OptionValue[column]] === Span)
+ 	] /;((ListQ[OptionValue[column]] && Length[OptionValue@column]>= 2)|| IntegerQ[OptionValue[column]] || Head[OptionValue[column]] === Span)
  
  
 
