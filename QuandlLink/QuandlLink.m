@@ -89,7 +89,7 @@ QuandlFinancialData[name_String, opts : OptionsPattern[]] :=
  		urlFetch = URLFetch[url, "Method"->"GET"];
  		stringsplit = Fold[StringSplit, urlFetch, {"\n", ","}];
  		Map[
- 			 {ToExpression@StringSplit[First@#, "-"], ToExpression@Rest@#} &,
+ 			 Prepend[ToExpression@Rest@#, First@#]&,
  			 stringsplit 
  		]
  		
