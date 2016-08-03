@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 (* Wolfram Language Package *)
 
 (* Created by the Wolfram Workbench Jun 23, 2015 *)
@@ -12,7 +14,7 @@ Options[QuandlFinancialData] =
 	{ 
 		authCode -> "", 
 		sortOrder -> "asc", 
-		startDate -> lastTradingDate , 
+		startDate -> lastTradingDate,
 		endDate -> "", 
 		transformation -> "", 
 		collapse -> "",
@@ -52,7 +54,7 @@ createURL[name_String, opts: OptionsPattern[]]:=
 	
 		col /;((Head[OptionValue[column]] === List && Length[OptionValue@column]>= 2)|| Head[OptionValue[column]] === Span|| OptionValue[column] === "") = "";
 		(
-			"http://www.quandl.com/api/v1/datasets/" <> 
+			"http://www.quandl.com/api/v3/datasets/" <> 
  			name <> 
  			".csv" <>
  			"?sort_order=" <> 
