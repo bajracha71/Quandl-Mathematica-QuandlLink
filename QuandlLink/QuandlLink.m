@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 (* Wolfram Language Package *)
 
 (* Created by the Wolfram Workbench Jun 23, 2015 *)
@@ -10,13 +12,13 @@ Unprotect[QuandlFinancialData];
 
 Options[QuandlFinancialData] = 
 	{ 
-		authCode -> "", 
-		sortOrder -> "asc", 
-		startDate -> lastTradingDate , 
+		apiKey -> "", 
+		sortOrder -> "", 
+		startDate -> "",
 		endDate -> "", 
-		transformation -> "", 
+		transform -> "", 
 		collapse -> "",
-		column -> ""
+		extra -> ""
 	};
 
 Begin["`Private`"]
@@ -34,44 +36,41 @@ lastTradingDate =
 	
 Options[createURL] = 
 	{ 
-		authCode -> "", 
-		sortOrder -> "asc", 
-		startDate -> lastTradingDate , 
+		apiKey -> "", 
+		sortOrder -> "", 
+		startDate -> "" , 
 		endDate -> "", 
-		transformation -> "", 
+		transform -> "", 
 		collapse -> "",
-		column -> ""
+		extra -> ""
 	};
+
+createParameter[val_, paramName_String] := 
+	(* Return request parameter or empty if the option value is not specified *)
+	Block[{}, 
+		If[StringQ[val] && val === "", 
+	    "", 
+	    "&" <> paramName <> "=" <> If[ListQ[val], StringRiffle[val, ","], val]]]
 
 createURL[name_String, opts: OptionsPattern[]]:=
 	Block[
-		{
-			col
-		},
-		col /;IntegerQ[OptionValue[column]] = ToString[OptionValue[column] - 1];
-	
-		col /;((Head[OptionValue[column]] === List && Length[OptionValue@column]>= 2)|| Head[OptionValue[column]] === Span|| OptionValue[column] === "") = "";
+		{},
 		(
-			"http://www.quandl.com/api/v1/datasets/" <> 
+			"https://www.quandl.com/api/v3/" <> 
  			name <> 
- 			".csv" <>
- 			"?sort_order=" <> 
- 			OptionValue[sortOrder]<>
- 			"&auth_token" <>
- 			OptionValue[authCode] <> 
- 			"&trim_start=" <> 
- 			OptionValue[startDate]<> 
- 			"&trim_end=" <> 
-			OptionValue[endDate]<>
- 			"&transformation=" <> 
- 			OptionValue[transformation] <> 
- 			"&collapse" <> 
- 			OptionValue[collapse]<>
- 			"&column=" <> 
- 			col
+ 			".csv?" <>
+			 If[OptionValue[sortOrder] === "", "", "order=" <> OptionValue[sortOrder]] <>
+			 createParameter[OptionValue[apiKey], "api_key"] <>
+			 createParameter[OptionValue[startDate], "start_date"] <>
+			 createParameter[OptionValue[endDate], "end_date"] <>
+			 createParameter[OptionValue[transform], "transform"] <>
+			 createParameter[OptionValue[collapse], "collapse"] <>
+			 If[StringQ[OptionValue[extra]] && (OptionValue[extra] === ""),
+				"",
+			    Apply[StringJoin, Map[createParameter[OptionValue[extra][#], #]&, Keys[OptionValue[extra]]]]
+			 ]
  		)
 	]
-			
 
 
 
@@ -80,46 +79,11 @@ createURL[name_String, opts: OptionsPattern[]]:=
 QuandlFinancialData[name_String, opts : OptionsPattern[]] :=
 	Block[
  		{
- 			url = createURL[name, opts],
- 			urlFetch,
- 			stringsplit
- 		}, 
- 		urlFetch = URLFetch[url, "Method"->"GET"];
- 		stringsplit = Fold[StringSplit, urlFetch, {"\n", ","}];
- 		Map[
- 			 {ToExpression@StringSplit[First@#, "-"], ToExpression@Rest@#} &,
- 			 stringsplit 
- 		]
- 		
- 	] /;(IntegerQ[OptionValue[column]]||OptionValue[column] ==="")
+ 			url = createURL[name, opts]
+ 		},
+ 		Import[url]
+ 	]
  	
-
-parseData[myString_String, pos_]/;((Head[pos] === List && Length[pos] >= 2)||Head[pos]===Span) :=
-	Block[
-		{
-			stringSplit = Fold[StringSplit, myString, {"\n", ","}],
-			newStringSplit 
-		},
-		newStringSplit = stringSplit[[All, pos]];
-		Map[
-			{ToExpression@StringSplit[First@#, "-"], ToExpression@Rest@#} &,
-			newStringSplit 
-   		]
- 	 ]
-  
- QuandlFinancialData[name_String, opts : OptionsPattern[]] :=
-	Block[
- 		{
- 			url = createURL[name, opts],
- 			urlFetch
-  		}, 
- 		urlFetch = URLFetch[url, "Method"->"GET"];
- 		parseData[urlFetch, OptionValue[column]]
- 		
- 	] /;((Head[OptionValue[column]] === List && Length[OptionValue@column]>= 2)|| Head[OptionValue[column]] === Span)
- 
- 
-
 End[]
 
 EndPackage[]
