@@ -56,7 +56,7 @@ createURL[name_String, opts: OptionsPattern[]]:=
 	Block[
 		{},
 		(
-			"https://www.quandl.com/api/v3/" <> 
+			"https://www.quandl.com/api/v3/datasets/" <> 
  			name <> 
  			".csv?" <>
 			 If[OptionValue[sortOrder] === "", "", "order=" <> OptionValue[sortOrder]] <>
